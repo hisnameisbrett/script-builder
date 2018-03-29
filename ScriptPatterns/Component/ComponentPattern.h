@@ -1,7 +1,7 @@
 #pragma once
 #include "core\Space\Component\Component.h"
 
-namespace EE
+namespace Example
 {
     struct $(CLASS_NAME) : public Component
     {

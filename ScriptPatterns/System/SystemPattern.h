@@ -1,7 +1,7 @@
 #pragma once
 #include "core\System\System.h"
 
-namespace EE
+namespace Example
 {
     class $(CLASS_NAME) : public System
     {
@@ -15,5 +15,4 @@ namespace EE
         virtual void SpaceInit(const SpacePtr space);
         virtual void SpaceDestruct(const SpacePtr space);
     };
-
 }

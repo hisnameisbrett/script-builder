@@ -1,6 +1,6 @@
 #include "$(CLASS_NAME).h"
 
-namespace EE
+namespace Example
 {
     REGISTER_TYPE_DEFINITION($(CLASS_NAME)); // self-registry
 

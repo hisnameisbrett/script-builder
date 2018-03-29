@@ -1,7 +1,7 @@
 #include "$(CLASS_NAME).h"
 #include "core\Space\Entity\Entity.h"
 
-namespace EE
+namespace Example
 {
 	//enum { GROUP0, GROUP1};
 
