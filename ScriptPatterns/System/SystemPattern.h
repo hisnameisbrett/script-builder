@@ -3,10 +3,10 @@
 
 namespace EE
 {
-    class SystemPattern : public System
+    class $(CLASS_NAME) : public System
     {
     public:
-		SystemPattern();
+		$(CLASS_NAME)();
 
         virtual void Init();
         virtual void Update(float dt);

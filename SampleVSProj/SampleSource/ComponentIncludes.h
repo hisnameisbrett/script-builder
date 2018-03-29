@@ -1,7 +1,4 @@
-#pragma once
 
-
-#include ".\Components\shleem.h"
-#include ".\Components\Borkerino.h"
-#include ".\Components\Blue.h"
-#include ".\Components\crab.h"
+#include ".\Components\Ree\Ree.h"
+#include ".\Components\Salmon\Salmon.h"
+#include ".\Components\Clam\Clam.h"

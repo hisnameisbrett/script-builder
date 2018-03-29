@@ -12,7 +12,7 @@ using cstring = const std::string;
 using string = std::string;
 using sstream = std::stringstream;
 
-cstring gDataFilePath("..\\ScriptBuilderData.xml");
+cstring gDataFilePath("ScriptBuilderData.xml");
 cstring gClassNameAlias("$(CLASS_NAME)");
 const unsigned gMaxFileBufferSize = 100000;
 
@@ -43,6 +43,12 @@ bool fileExists(cstring& path, WIN32_FIND_DATA* outFindData = nullptr)
     return false;
 }
 
+void createDir(cstring& path)
+{
+    if (CreateDirectory(path.c_str(), NULL) == ERROR_PATH_NOT_FOUND)
+        throw std::exception(("ERROR: Could not create directory at " + path).c_str());
+}
+
 void searchAndReplace(std::ifstream& inFile, std::ofstream& outFile, cstring toReplace, cstring replaceWith)
 {
     std::string line;
@@ -61,13 +67,9 @@ void searchAndReplace(std::ifstream& inFile, std::ofstream& outFile, cstring toR
     }
 }
 
-void duplicateAndReplaceFile(cstring& path_pattern, cstring& path_out, cstring& dir_out, cstring& className)
+bool duplicateAndReplaceFile(cstring& path_pattern, cstring& path_out, cstring& className)
 {
     std::string path_temp = path_out + ".temp";
-    if (fileExists(dir_out) == false)
-        if (CreateDirectory(dir_out.c_str(), NULL) == ERROR_PATH_NOT_FOUND)
-            throw std::exception(("Could not find path: " + dir_out).c_str());
-
     if (CopyFile(path_pattern.c_str(), path_temp.c_str(), false))
     {
         std::ifstream tempFile(path_temp);
@@ -78,8 +80,10 @@ void duplicateAndReplaceFile(cstring& path_pattern, cstring& path_out, cstring& 
             tempFile.close();
             replacedFile.close();
             DeleteFile(path_temp.c_str());
+            return true;
         }
     }
+    return false;
 }
 
 // given two relative paths, returns new relative path from 'from' to 'to'
@@ -166,6 +170,9 @@ int main(void)
     string scriptName;         // name of new script
     string patternName;         // name of pattern file
 
+    bool newHeaderExists = false;
+    bool newSourceExists = false;
+
     try
     {
         std::cout << "Enter pattern key: " << std::endl;
@@ -206,9 +213,16 @@ int main(void)
         relpath_patternDir = assertFirstNode(patternNode, "PatternDir")->value();
         patternName = assertFirstNode(patternNode, "PatternName")->value();
         relpath_output = assertFirstNode(patternNode, "OutputDir")->value();
+        if (fileExists(relpath_output) == false)
+        {
+            createDir(relpath_output);
+        }
         bool createSubDir = upperCase(assertFirstNode(patternNode, "CreateSubDir")->value()) == "TRUE";
         if (createSubDir)
+        {
             relpath_output += scriptName + "\\";
+            createDir(relpath_output);
+        }
 
         xml_node<>* includeNode = patternNode->first_node("IncludeFile");
         if (includeNode)
@@ -229,8 +243,8 @@ int main(void)
             relpath_patternHeader = relpath_patternDir + patternName + ".h";
         }
 
-        duplicateAndReplaceFile(relpath_patternSource, relpath_newSource, relpath_output, scriptName);
-        duplicateAndReplaceFile(relpath_patternHeader, relpath_newHeader, relpath_output, scriptName);
+        newSourceExists = duplicateAndReplaceFile(relpath_patternSource, relpath_newSource, scriptName);
+        newHeaderExists = duplicateAndReplaceFile(relpath_patternHeader, relpath_newHeader, scriptName);
 
         // get relative path from project to script source/header
         path_projToNewSource = getRelativePath(relpath_project, FILE_ATTRIBUTE_NORMAL,
@@ -239,7 +253,7 @@ int main(void)
             relpath_newHeader, FILE_ATTRIBUTE_NORMAL);
 
         // insert into includes file if requested
-        if (includeNode)
+        if (includeNode && newHeaderExists)
         {
             relpath_include = includeNode->value();
             string includesContentStr;
@@ -279,7 +293,7 @@ int main(void)
             xml_node<>* itemGroupNode = rootNode->first_node("ItemGroup");
             while (itemGroupNode)
             {
-                if (headerIncludesFound == false)
+                if (newHeaderExists && headerIncludesFound == false)
                 {
                     xml_node<>* includeNode = itemGroupNode->first_node("ClInclude");
                     if (includeNode)
@@ -288,7 +302,7 @@ int main(void)
                         headerIncludesFound = true;
                     }
                 }
-                else if (sourceIncludesFound == false)
+                else if (newSourceExists && sourceIncludesFound == false)
                 {
                     xml_node<>* sourceNode = itemGroupNode->first_node("ClCompile");
                     if (sourceNode)
@@ -303,14 +317,14 @@ int main(void)
                 }
                 itemGroupNode = itemGroupNode->next_sibling("ItemGroup");
             }
-            if (headerIncludesFound == false)
+            if (newHeaderExists && headerIncludesFound == false)
             {
                 // no files yet, add them
                 xml_node<>* newItemGroupNode = createXmlNode(docProj, "ItemGroup");
                 appendNewXmlNodeAndAttribs(docProj, newItemGroupNode, "ClInclude", "Include", path_projToNewHeader);
                 rootNode->append_node(newItemGroupNode);
             }
-            if (sourceIncludesFound == false)
+            if (newSourceExists && sourceIncludesFound == false)
             {
                 // no files yet, add them
                 xml_node<>* newItemGroupNode = createXmlNode(docProj, "ItemGroup");

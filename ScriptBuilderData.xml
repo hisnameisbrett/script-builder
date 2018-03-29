@@ -1,27 +1,27 @@
 <Root>
   <!--path to relevant .vcxproj file: -->
-  <ProjectFilePath>..\SampleVSProj\SampleProject\SampleProject.vcxproj</ProjectFilePath>
+  <ProjectFilePath>SampleVSProj\SampleProject\SampleProject.vcxproj</ProjectFilePath>
   <!--custom pattern definitions:-->
   <PatternsRoot>
     <!--pattern for creating components:-->
     <Pattern>
       <Key>COMPONENT</Key>
-      <PatternDir>..\ScriptPatterns\Component\</PatternDir>
+      <PatternDir>ScriptPatterns\Component\</PatternDir>
       <PatternName>ComponentPattern</PatternName>
-      <CreateSubDir>false</CreateSubDir>
-      <OutputDir>..\SampleVSProj\SampleSource\Components\</OutputDir>
+      <CreateSubDir>true</CreateSubDir>
+      <OutputDir>SampleVSProj\SampleSource\Components\</OutputDir>
       <!--optional 'includes' file to append to-->
-      <IncludeFile>..\SampleVSProj\SampleSource\ComponentIncludes.h</IncludeFile>
+      <IncludeFile>SampleVSProj\SampleSource\ComponentIncludes.h</IncludeFile>
     </Pattern>
     <!--pattern for creating systems:-->
     <Pattern>
       <Key>SYSTEM</Key>
-      <PatternDir>..\ScriptPatterns\System\</PatternDir>
+      <PatternDir>ScriptPatterns\System\</PatternDir>
       <PatternName>SystemPattern</PatternName>
-      <CreateSubDir>false</CreateSubDir>
-      <OutputDir>..\SampleVSProj\SampleSource\Systems\</OutputDir>
+      <CreateSubDir>true</CreateSubDir>
+      <OutputDir>SampleVSProj\SampleSource\Systems\</OutputDir>
       <!--optional 'includes' file to append to-->
-      <IncludeFile>..\SampleVSProj\SampleSource\SystemIncludes.h</IncludeFile>
+      <IncludeFile>SampleVSProj\SampleSource\SystemIncludes.h</IncludeFile>
     </Pattern>
   </PatternsRoot>
 </Root>
