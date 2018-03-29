@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{DB6F1F63-DF0D-4CB0-B0C9-11AA19A5FEDE}</ProjectGuid>
+    <ProjectGuid>{57A2243F-42DD-4FA0-AD10-13894AEECC33}</ProjectGuid>
     <RootNamespace>SampleProject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -51,8 +52,10 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Label="Shared" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -107,46 +110,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup />
+  <ItemGroup>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
-  <ItemGroup>
-    <ClInclude Include="..\SampleSource\Components\Ree\Ree.h" />
-    <ClInclude Include="..\SampleSource\Header.h" />
-    <ClInclude Include="..\SampleSource\SystemIncludes.h" />
-    <ClInclude Include="..\SampleSource\Systems\Barp\Barp.h" />
-    <ClInclude Include="..\SampleSource\Components\Salmon\Salmon.h" />
-    <ClInclude Include="..\SampleSource\Components\Clam\Clam.h" />
-    <ClInclude Include="..\SampleSource\Systems\shleemyboi\shleemyboi.h" />
-    <ClInclude Include="..\SampleSource\Systems\hurp\hurp.hpp" />
-    <ClInclude Include="..\SampleSource\Systems\Beerzzzz\Beerzzzz.hpp" />
-    <ClInclude Include="..\SampleSource\Systems\assballs\assballs.h" />
-    <ClInclude Include="..\SampleSource\Systems\jargon.h" />
-    <ClInclude Include="..\SampleSource\Systems\AAAAA.h" />
-    <ClInclude Include="..\SampleSource\Systems\hahahahaha.h" />
-    <ClInclude Include="..\SampleSource\Systems\ZZZ.h" />
-    <ClInclude Include="..\SampleSource\Systems\CAT.h" />
-    <ClInclude Include="..\SampleSource\Systems\THESHLEEM\THESHLEEM.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\SampleSource\Components\Ree\Ree.cpp" />
-    <ClCompile Include="..\SampleSource\Source.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\Barp\Barp.cpp" />
-    <ClCompile Include="..\SampleSource\Components\Salmon\Salmon.cpp" />
-    <ClCompile Include="..\SampleSource\Components\Clam\Clam.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\shleemyboi\shleemyboi.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\hurp\hurp.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\Beerzzzz\Beerzzzz.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\assballs\assballs.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\jargon.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\AAAAA.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\hahahahaha.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\ZZZ.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\CAT.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\yara\yara.cpp" />
-    <ClCompile Include="..\SampleSource\Systems\monkey\monkey.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\SampleSource\Systems\yara\yara.h" />
-  </ItemGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>

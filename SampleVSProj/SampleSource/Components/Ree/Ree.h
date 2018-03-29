@@ -3,12 +3,12 @@
 
 namespace EE
 {
-    struct Ree : public Component
+    struct ree : public Component
     {
-        Ree();
-        Ree(const Ree& rhs) = default;
-        ~Ree();
-        Ree* Clone() const override { return new Ree(*this); }
+        ree();
+        ree(const ree& rhs) = default;
+        ~ree();
+        ree* Clone() const override { return new ree(*this); }
         void Initialize() override;
 
         void SerializeSelf(Json::Value& comp_root) const override;
@@ -16,6 +16,6 @@ namespace EE
         void EditMode() override;
 
     private:
-        static DerivedRegister<Ree> reg;	// self-register
+        static DerivedRegister<ree> reg;	// self-register
     };
 }

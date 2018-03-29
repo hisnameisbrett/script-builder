@@ -1,5 +1,40 @@
+<!-------------------------------------------------------------------------------------------------
+File:   ScriptBuilderData.xml
+Author: Brett Cunningham
+Date:   Mar. 29, 2018
+Brief:  Data file for ScriptBuilder.exe. 
+
+        To use:
+        
+        1.  <ProjectFilePath>: Define path from ScriptBuilder.exe to .vcxproj 
+              file of your Visual Studio project.
+        2.  <Pattern>: Define as many pattern templates as you want.
+              a). <Key>: Name shortcut for accessing pattern.
+              b). <PatternDir>: Path from ScriptBuilder.exe to directory of your pattern files.
+              c). <PatternName>: Name of pattern file, without extensions.
+              d). <CreateSubDir>: True = Nests scripts under subdirectory of given script name.
+              e). <OutputDir>: Path from ScriptBuilder.exe to directory to output new scripts.
+              f). <IncludeFile>: OPTIONAL Path from ScriptBuilder.exe to a header 'includes' 
+                    file to append to.
+               
+        Example:
+        
+          <Root>
+            <ProjectFilePath>SampleVSProj\SampleProject\SampleProject.vcxproj</ProjectFilePath>
+            <PatternsRoot>
+              <Pattern>
+                <Key>COMPONENT</Key>
+                <PatternDir>ScriptPatterns\Component\</PatternDir>
+                <PatternName>ComponentPattern</PatternName>
+                <CreateSubDir>true</CreateSubDir>
+                <OutputDir>SampleVSProj\SampleSource\Components\</OutputDir>
+                <IncludeFile>SampleVSProj\SampleSource\ComponentIncludes.h</IncludeFile>
+            </PatternsRoot>
+          </Root>
+---------------------------------------------------------------------------------------------------->
+
 <Root>
-  <!--path to relevant .vcxproj file: -->
+  <!--path to relevant .vcxproj file:-->
   <ProjectFilePath>SampleVSProj\SampleProject\SampleProject.vcxproj</ProjectFilePath>
   <!--custom pattern definitions:-->
   <PatternsRoot>

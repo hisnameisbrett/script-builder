@@ -1,33 +1,33 @@
-#include "Ree.h"
+#include "ree.h"
 
 namespace EE
 {
-    REGISTER_TYPE_DEFINITION(Ree); // self-registry
+    REGISTER_TYPE_DEFINITION(ree); // self-registry
 
-    Ree::Ree()
+    ree::ree()
     {
 
     }
 
-    // Ree::Ree(const Ree & rhs) : Component(rhs) {} [for custom copy constructors]
+    // ree::ree(const ree & rhs) : Component(rhs) {} [for custom copy constructors]
 
-    void Ree::Initialize()
+    void ree::Initialize()
     {
 
     }
 
-    Ree::~Ree()
+    ree::~ree()
     {
 
     }
 
-    void Ree::SerializeSelf(Json::Value & comp_root) const
+    void ree::SerializeSelf(Json::Value & comp_root) const
     {
         //Serialize(mem0_, "mem0_", comp_root); 
         //Serialize(mem1_, "mem1_", comp_root);
     }
 
-    ComponentPtr Ree::DeserializeSelf(Json::Value& comp_root)
+    ComponentPtr ree::DeserializeSelf(Json::Value& comp_root)
     {
         //Deserialize(mem0_, "mem0_", comp_root); 
         //Deserialize(mem1_, "mem1_", comp_root);
@@ -35,7 +35,7 @@ namespace EE
         return this;
     }
 
-    void Ree::EditMode()
+    void ree::EditMode()
     {
         //float center[2] = { center_.x, center_.y };
         //if (ImGui::DragFloat2("Center", center))
