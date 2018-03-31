@@ -5,7 +5,13 @@ Date:     Mar. 29, 2018
 
 Brief:    
 
-  ***Note: Tested on Visual Studio 2017 using .c, .cpp, .h, and .hpp file types***
+  IMPORTANT: Make sure you save your Visual Studio project before running
+  the ScriptBuilder program. If you have unsaved changes, you may be 
+  prompted to discard your changes, overwrite external changes with yours, 
+  or to ignore the external changes. THE SAFEST OPTION IS TO DISCARD YOUR
+  LOCAL CHANGES TO THE PROJECT, otherwise the project file may be corrupted.
+  
+  ***Tested on Visual Studio 2017 using .c, .cpp, .h, and .hpp file types***
   
   The purpose of this program is to automate the process of creating boiler-plate
   C++ scripts for a Visual Studio project. 
